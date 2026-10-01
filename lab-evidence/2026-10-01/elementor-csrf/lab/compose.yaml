@@ -1,0 +1,67 @@
+services:
+  db:
+    image: mariadb:11.4@sha256:70cc072b29b4a89ae07abb2d4da2c64678a7f2dfe092751bb51c87d67dc1338b
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: lab_password_only
+      MARIADB_ROOT_PASSWORD: lab_root_only
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: [CMD-SHELL, "healthcheck.sh --connect --innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  vulnerable:
+    image: wordpress:7.1.0-php8.3-apache@sha256:edeeae67330a6c739b030e7eeaaaf6d60e8f17533a4f6217d20f89c04061952c
+    depends_on:
+      db: {condition: service_healthy}
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: lab_password_only
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wpv_
+    volumes:
+      - vulnerable-data:/var/www/html
+      - ./elementor-vulnerable/elementor:/var/www/html/wp-content/plugins/elementor:ro
+      - ./setup.php:/opt/setup.php:ro
+      - ./state/vulnerable:/lab-state
+    ports:
+      - 127.0.0.1:38890:80
+    healthcheck:
+      test: [CMD-SHELL, "php -r 'exit(@file_get_contents(\"http://127.0.0.1/wp-login.php\") === false);'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  patched:
+    image: wordpress:7.1.0-php8.3-apache@sha256:edeeae67330a6c739b030e7eeaaaf6d60e8f17533a4f6217d20f89c04061952c
+    depends_on:
+      db: {condition: service_healthy}
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: lab_password_only
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wpp_
+    volumes:
+      - patched-data:/var/www/html
+      - ./elementor-patched/elementor:/var/www/html/wp-content/plugins/elementor:ro
+      - ./setup.php:/opt/setup.php:ro
+      - ./state/patched:/lab-state
+    ports:
+      - 127.0.0.1:38891:80
+    healthcheck:
+      test: [CMD-SHELL, "php -r 'exit(@file_get_contents(\"http://127.0.0.1/wp-login.php\") === false);'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  scanner:
+    image: projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc
+    volumes:
+      - ../template.yaml:/templates/template.yaml:ro
+volumes:
+  db-data:
+  vulnerable-data:
+  patched-data:

@@ -1,0 +1,13 @@
+{
+  "template_id": "CVE-2026-90898",
+  "template_path": "template.yaml",
+  "compose_file": "lab/compose.yaml",
+  "scanner_service": "scanner",
+  "container_template": "/templates/template.yaml",
+  "target_services": ["vulnerable", "patched", "collector"],
+  "timeout_seconds": 240,
+  "tests": [
+    {"name":"vulnerable","target":"http://vulnerable:8080","min_matches":1,"max_matches":5},
+    {"name":"patched","target":"http://patched:8080","min_matches":0,"max_matches":0}
+  ]
+}

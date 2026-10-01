@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "template_id": "CVE-2026-86242",
+  "template_path": "template.yaml",
+  "template_sha256": "d1aefca7473c88ce0a657b9c57246b055ec2726fe9e0c594f2e35d536ad42f1c",
+  "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
+  "upstream_revision": "8b9d065ccb0492d39f7680c908b3030a97ddfe1b",
+  "sources": [
+    {
+      "url": "https://github.com/maximhq/bifrost/security/advisories/GHSA-2qp8-4xgm-fw6g"
+    }
+  ],
+  "nuclei_image": "projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc",
+  "nuclei_version": "v3.11.0",
+  "target_images": [
+    "maximhq/bifrost@sha256:c4de3a1d6bd2f9b8b0b8f508deaaf0337a793603d2b84b61138cdb35f94a4318",
+    "maximhq/bifrost@sha256:653b74a8410e5757375aa9a25ce21f90f4591fc11d65879451939b6172ce80ed"
+  ],
+  "architecture": "linux/arm64",
+  "validation_status": "passed",
+  "evidence_level": "actual-product",
+  "tests": [
+    {
+      "name": "vulnerable",
+      "target_version": "1.6.2",
+      "evidence_level": "actual-product",
+      "expected": "at least one finding",
+      "observed": 1,
+      "evidence_path": "evidence/85488f7bc6fd/test-vulnerable.stdout.log"
+    },
+    {
+      "name": "patched",
+      "target_version": "2.1.0",
+      "evidence_level": "actual-product",
+      "expected": "zero findings",
+      "observed": 0,
+      "evidence_path": "evidence/85488f7bc6fd/test-patched.stdout.log"
+    }
+  ],
+  "limitations": [
+    "Only SSRF is proven on the statically linked image; dynamic plugin execution remains conditional.",
+    "A temporary downloaded plugin file may remain."
+  ]
+}

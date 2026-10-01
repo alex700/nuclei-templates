@@ -1,0 +1,179 @@
+{
+  "template_sha256": "d1aefca7473c88ce0a657b9c57246b055ec2726fe9e0c594f2e35d536ad42f1c",
+  "tests": [
+    {
+      "name": "vulnerable",
+      "observed_matches": 1,
+      "expected_min": 1,
+      "expected_max": 1
+    },
+    {
+      "name": "patched",
+      "observed_matches": 0,
+      "expected_min": 0,
+      "expected_max": 0
+    }
+  ],
+  "commands": [
+    {
+      "label": "compose-config",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "config",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "startup",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "up",
+        "-d",
+        "--wait",
+        "--wait-timeout",
+        "230",
+        "vulnerable",
+        "patched",
+        "collector"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "version",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "validate",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-validate"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "test-vulnerable",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-u",
+        "http://vulnerable:8080",
+        "-jsonl",
+        "-silent",
+        "-debug"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "test-patched",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-u",
+        "http://patched:8080",
+        "-jsonl",
+        "-silent",
+        "-debug"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "application-logs",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "logs",
+        "--no-color",
+        "vulnerable",
+        "patched",
+        "collector"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "cleanup",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-85488f7bc6fd",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/bifrost-ssrf/lab/compose.yaml",
+        "down",
+        "--remove-orphans"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "assertions_passed": true,
+  "cleanup_passed": true
+}

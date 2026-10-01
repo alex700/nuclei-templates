@@ -1,0 +1,253 @@
+{
+  "template_sha256": "751fa07576fb3b54bd9933b3b42e754f87e951a8941849c8d3f01b81e580fe76",
+  "tests": [
+    {
+      "name": "vulnerable",
+      "observed_matches": 1,
+      "expected_min": 1,
+      "expected_max": 1
+    },
+    {
+      "name": "patched",
+      "observed_matches": 0,
+      "expected_min": 0,
+      "expected_max": 0
+    },
+    {
+      "name": "invalid-cookie",
+      "observed_matches": 0,
+      "expected_min": 0,
+      "expected_max": 0
+    }
+  ],
+  "commands": [
+    {
+      "label": "compose-config",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "config",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "startup",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "up",
+        "-d",
+        "--wait",
+        "--wait-timeout",
+        "230",
+        "db",
+        "vulnerable",
+        "patched"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "setup-vulnerable",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "exec",
+        "-T",
+        "vulnerable",
+        "php",
+        "/opt/setup.php",
+        "vulnerable"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "setup-patched",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "exec",
+        "-T",
+        "patched",
+        "php",
+        "/opt/setup.php",
+        "patched"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "version",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "validate",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-validate"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "test-vulnerable",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-u",
+        "http://vulnerable",
+        "-jsonl",
+        "-silent",
+        "-debug",
+        "-var",
+        "token=<redacted-lab-cookie>"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "test-patched",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-u",
+        "http://patched",
+        "-jsonl",
+        "-silent",
+        "-debug",
+        "-var",
+        "token=<redacted-lab-cookie>"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "test-invalid-cookie",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "run",
+        "--rm",
+        "--no-deps",
+        "-T",
+        "scanner",
+        "-t",
+        "/templates/template.yaml",
+        "-duc",
+        "-nc",
+        "-u",
+        "http://vulnerable",
+        "-jsonl",
+        "-silent",
+        "-debug",
+        "-var",
+        "token=<redacted-lab-cookie>"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "application-logs",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "logs",
+        "--no-color",
+        "db",
+        "vulnerable",
+        "patched"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "cleanup",
+      "argv": [
+        "docker",
+        "compose",
+        "-p",
+        "nuclei-lab-5c6ec6fe1fe1",
+        "-f",
+        "/Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf/lab/compose.yaml",
+        "down",
+        "--remove-orphans"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "assertions_passed": true,
+  "cleanup_passed": true
+}

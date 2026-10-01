@@ -1,0 +1,5 @@
+*.zip
+elementor-vulnerable/
+elementor-patched/
+state/
+collector-data/

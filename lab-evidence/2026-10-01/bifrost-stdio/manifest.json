@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "template_id": "CVE-2026-90898",
+  "template_path": "template.yaml",
+  "template_sha256": "4f6098a575c4afe5a4621543b818714fd8c0d8a996fdca0f8b09e8310c8eda23",
+  "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
+  "upstream_revision": "8b9d065ccb0492d39f7680c908b3030a97ddfe1b",
+  "sources": [
+    {
+      "url": "https://github.com/maximhq/bifrost/pull/6757"
+    }
+  ],
+  "nuclei_image": "projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc",
+  "nuclei_version": "v3.11.0",
+  "target_images": [
+    "maximhq/bifrost@sha256:cf71be9fad4e0749b6e26cbb774c687413dad9a0970b83f4e1dadb6f503ea208",
+    "maximhq/bifrost@sha256:653b74a8410e5757375aa9a25ce21f90f4591fc11d65879451939b6172ce80ed"
+  ],
+  "architecture": "linux/arm64",
+  "validation_status": "passed",
+  "evidence_level": "actual-product",
+  "tests": [
+    {
+      "name": "vulnerable",
+      "target_version": "2.0.0",
+      "evidence_level": "actual-product",
+      "expected": "at least one finding",
+      "observed": 2,
+      "evidence_path": "evidence/10bf73e66254/test-vulnerable.stdout.log"
+    },
+    {
+      "name": "patched",
+      "target_version": "2.1.0",
+      "evidence_level": "actual-product",
+      "expected": "zero findings",
+      "observed": 0,
+      "evidence_path": "evidence/10bf73e66254/test-patched.stdout.log"
+    }
+  ],
+  "limitations": [
+    "The MCP retry may emit duplicate callbacks for one registration.",
+    "The failed handshake requires a 45-second request timeout."
+  ]
+}

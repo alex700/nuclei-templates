@@ -1,0 +1,17 @@
+HTTP/1.1 500 Internal Server Error
+Server: fasthttp
+Date: Thu, 01 Oct 2026 21:21:29 GMT
+Content-Type: application/json
+Content-Length: 260
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: frame-ancestors 'none'
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Access-Control-Allow-Origin:
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
+Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, X-Stainless-Timeout, X-Api-Key, X-OpenAI-Agents-SDK, X-Operation-ID
+Access-Control-Max-Age: 86400
+Vary: Origin
+
+{"is_bifrost_error":false,"status_code":500,"error":{"message":"Plugin created in database but failed to load: failed to load custom plugin: plugin.Open(\"/tmp/bifrost-plugin-669609566.so\"): Dynamic loading not supported"},"extra_fields":{"routing_info":{}}}

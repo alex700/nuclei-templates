@@ -1,0 +1,2 @@
+500
+{"is_bifrost_error":false,"status_code":500,"error":{"message":"Failed to connect MCP client: failed to connect MCP client: failed to connect to MCP client nuclei_stdio_preflight_retry: failed to connect MCP client nuclei_stdio_preflight_retry: failed to initialize MCP client after 5 retries: transport error: context deadline exceeded"},"extra_fields":{"routing_info":{}}}

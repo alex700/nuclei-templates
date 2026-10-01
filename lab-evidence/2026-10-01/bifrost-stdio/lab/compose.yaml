@@ -1,0 +1,60 @@
+services:
+  vulnerable:
+    image: maximhq/bifrost@sha256:cf71be9fad4e0749b6e26cbb774c687413dad9a0970b83f4e1dadb6f503ea208
+    environment:
+      APP_PORT: '8080'
+      APP_HOST: 0.0.0.0
+      APP_DIR: /app/data
+      LOG_LEVEL: debug
+    volumes:
+      - vulnerable-data:/app/data
+    ports:
+      - 127.0.0.1:38883:8080
+    healthcheck:
+      test: [CMD-SHELL, "wget -q -O /dev/null http://127.0.0.1:8080/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+    init: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  patched:
+    image: maximhq/bifrost@sha256:653b74a8410e5757375aa9a25ce21f90f4591fc11d65879451939b6172ce80ed
+    environment:
+      APP_PORT: '8080'
+      APP_HOST: 0.0.0.0
+      APP_DIR: /app/data
+      LOG_LEVEL: debug
+    volumes:
+      - patched-data:/app/data
+    ports:
+      - 127.0.0.1:38884:8080
+    healthcheck:
+      test: [CMD-SHELL, "wget -q -O /dev/null http://127.0.0.1:8080/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+    init: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  collector:
+    image: python:3.12-alpine@sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111
+    command: [python, /opt/collector.py]
+    volumes:
+      - ./collector.py:/opt/collector.py:ro
+      - ./collector-data:/data
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8081/health',timeout=2)"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    init: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  scanner:
+    image: projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc
+    volumes:
+      - ../template.yaml:/templates/template.yaml:ro
+volumes:
+  vulnerable-data:
+  patched-data:

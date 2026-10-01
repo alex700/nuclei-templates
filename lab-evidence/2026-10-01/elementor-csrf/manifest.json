@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "template_id": "elementor-rest-nonce-bypass",
+  "template_path": "template.yaml",
+  "template_sha256": "751fa07576fb3b54bd9933b3b42e754f87e951a8941849c8d3f01b81e580fe76",
+  "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
+  "upstream_revision": "8b9d065ccb0492d39f7680c908b3030a97ddfe1b",
+  "sources": [
+    {
+      "url": "https://patchstack.com/articles/cross-site-request-forgery-in-elementor-plugin-affecting-2-million-sites/"
+    },
+    {
+      "url": "https://downloads.wordpress.org/plugin/elementor.4.3.0.zip#sha256=3617ade04fc0b236756159399c56e4cc91c463daaedb3318b7cf5c7207cefa90"
+    },
+    {
+      "url": "https://downloads.wordpress.org/plugin/elementor.4.3.2.zip#sha256=8b3eee68425e5fd90007dc84b37ffea844c0db44b6d342968f33c76187a94371"
+    }
+  ],
+  "nuclei_image": "projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc",
+  "nuclei_version": "v3.11.0",
+  "target_images": [
+    "wordpress:7.1.0-php8.3-apache@sha256:edeeae67330a6c739b030e7eeaaaf6d60e8f17533a4f6217d20f89c04061952c",
+    "mariadb:11.4@sha256:70cc072b29b4a89ae07abb2d4da2c64678a7f2dfe092751bb51c87d67dc1338b"
+  ],
+  "architecture": "linux/arm64",
+  "validation_status": "passed",
+  "evidence_level": "actual-product",
+  "tests": [
+    {
+      "name": "vulnerable",
+      "target_version": "4.3.0",
+      "evidence_level": "actual-product",
+      "expected": "at least one finding",
+      "observed": 1,
+      "evidence_path": "evidence/5c6ec6fe1fe1/test-vulnerable.stdout.log"
+    },
+    {
+      "name": "patched",
+      "target_version": "4.3.2",
+      "evidence_level": "actual-product",
+      "expected": "zero findings",
+      "observed": 0,
+      "evidence_path": "evidence/5c6ec6fe1fe1/test-patched.stdout.log"
+    },
+    {
+      "name": "invalid-cookie",
+      "target_version": "4.3.0",
+      "evidence_level": "actual-product",
+      "expected": "zero findings",
+      "observed": 0,
+      "evidence_path": "evidence/5c6ec6fe1fe1/test-invalid-cookie.stdout.log"
+    }
+  ],
+  "limitations": [
+    "Requires an authorized administrator cookie and enabled Editor Events experiment."
+  ]
+}
