@@ -2,7 +2,7 @@
   "schema_version": 1,
   "template_id": "elementor-rest-nonce-bypass",
   "template_path": "template.yaml",
-  "template_sha256": "751fa07576fb3b54bd9933b3b42e754f87e951a8941849c8d3f01b81e580fe76",
+  "template_sha256": "8dfa8c5438047bfe9f10eaa628bb3cc37fa000d633e7674239bf9939546456c5",
   "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
   "upstream_revision": "8b9d065ccb0492d39f7680c908b3030a97ddfe1b",
   "sources": [
@@ -30,28 +30,32 @@
       "name": "vulnerable",
       "target_version": "4.3.0",
       "evidence_level": "actual-product",
-      "expected": "at least one finding",
+      "expected": "one finding after successful login",
       "observed": 1,
-      "evidence_path": "evidence/5c6ec6fe1fe1/test-vulnerable.stdout.log"
+      "evidence_path": "evidence/6e9bb92c6a5a/test-vulnerable.stdout.log"
     },
     {
       "name": "patched",
       "target_version": "4.3.2",
       "evidence_level": "actual-product",
-      "expected": "zero findings",
+      "expected": "zero findings after successful login",
       "observed": 0,
-      "evidence_path": "evidence/5c6ec6fe1fe1/test-patched.stdout.log"
+      "evidence_path": "evidence/6e9bb92c6a5a/test-patched.stdout.log"
     },
     {
-      "name": "invalid-cookie",
+      "name": "invalid-login",
       "target_version": "4.3.0",
       "evidence_level": "actual-product",
-      "expected": "zero findings",
+      "expected": "zero findings; login refused before probe",
       "observed": 0,
-      "evidence_path": "evidence/5c6ec6fe1fe1/test-invalid-cookie.stdout.log"
+      "evidence_path": "evidence/6e9bb92c6a5a/test-invalid-login.stdout.log"
     }
   ],
   "limitations": [
-    "Requires an authorized administrator cookie and enabled Editor Events experiment."
-  ]
+    "Requires authorized WordPress administrator credentials and enabled Editor Events experiment.",
+    "The login form path assumes a standard WordPress installation without SSO or MFA."
+  ],
+  "branch": "prepare/elementor-login-2026-10-25",
+  "commit": null,
+  "pr_url": "https://github.com/projectdiscovery/nuclei-templates/pull/17361"
 }

@@ -8,8 +8,8 @@
   "setup_services": ["vulnerable", "patched"],
   "timeout_seconds": 240,
   "tests": [
-    {"name":"vulnerable","target":"http://vulnerable","cookie_service":"vulnerable","min_matches":1,"max_matches":1},
-    {"name":"patched","target":"http://patched","cookie_service":"patched","min_matches":0,"max_matches":0},
-    {"name":"invalid-cookie","target":"http://vulnerable","cookie":"wordpress_logged_in_invalid=bad","min_matches":0,"max_matches":0}
+    {"name":"vulnerable","target":"http://vulnerable","username":"labadmin","password":"LabPass_2026!","min_matches":1,"max_matches":1},
+    {"name":"patched","target":"http://patched","username":"labadmin","password":"LabPass_2026!","min_matches":0,"max_matches":0},
+    {"name":"invalid-login","target":"http://vulnerable","username":"labadmin","password":"WrongLabPass_2026!","min_matches":0,"max_matches":0}
   ]
 }

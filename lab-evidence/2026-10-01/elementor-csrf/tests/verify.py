@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import urllib.parse
 import uuid
 
 
@@ -42,7 +43,8 @@ def run(package):
 
     def command(label, arguments):
         args = prefix + arguments
-        record = {'label': label, 'argv': args}
+        record = {'label': label, 'argv': [re.sub(r'^(password=).*$', r'\1<REDACTED>', arg)
+                                            for arg in args]}
         summary['commands'].append(record)
         try:
             result = subprocess.run(args, cwd=package, capture_output=True, text=True, timeout=timeout)
@@ -54,8 +56,12 @@ def run(package):
             stderr = stderr.decode(errors='replace') if isinstance(stderr, bytes) else stderr
             record['exit_code'] = None
             record['error'] = 'timeout'
-        (evidence / (label + '.stdout.log')).write_text(stdout)
-        (evidence / (label + '.stderr.log')).write_text(stderr)
+        def redact(value):
+            for secret in ('LabPass_2026!', 'WrongLabPass_2026!'):
+                value = value.replace(secret, '<REDACTED>').replace(urllib.parse.quote(secret), '<REDACTED>')
+            return re.sub(r'(wordpress_logged_in_[^=;\s]+=)[^;\s]+', r'\1<REDACTED>', value)
+        (evidence / (label + '.stdout.log')).write_text(redact(stdout))
+        (evidence / (label + '.stderr.log')).write_text(redact(stderr))
         if record['exit_code'] != 0:
             raise RuntimeError(f'{label} failed: see {evidence}')
         return stdout
@@ -81,11 +87,10 @@ def run(package):
         common = ['-t', config['container_template'], '-duc', '-nc']
         command('validate', scanner + common + ['-validate'])
         for test in tests:
-            cookie = ((package / 'lab/state' / test['cookie_service'] / 'cookie.txt').read_text().strip()
-                      if test.get('cookie_service') else test.get('cookie', 'invalid=invalid'))
             output = command('test-' + test['name'], scanner + common +
                              ['-u', test['target'], '-jsonl', '-silent', '-debug',
-                              '-var', 'token=' + cookie] + test.get('extra_args', []))
+                              '-var', 'username=' + test['username'],
+                              '-var', 'password=' + test['password']] + test.get('extra_args', []))
             findings = assert_findings(output, config['template_id'], test['min_matches'], test['max_matches'])
             (evidence / (test['name'] + '.jsonl')).write_text(output)
             summary['tests'].append({'name': test['name'], 'observed_matches': len(findings),

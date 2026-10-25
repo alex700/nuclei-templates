@@ -1,17 +1,41 @@
-# Feasibility gate — Elementor REST nonce bypass
+# Elementor REST nonce bypass: login revision
 
-Status: feasible. Build stage pending.
+## Scope and prerequisite
 
-- Observation: with the same legitimate admin cookie and no REST nonce, GET `/wp-json/wp/v2/settings` is rejected; adding exact `elementor/v1/events/` query marker returns protected settings JSON on 4.3.0. Patched 4.3.2 rejects it.
-- Positive/control artifacts: official `elementor.4.3.0.zip` and `elementor.4.3.2.zip` both returned HTTP 200 from `downloads.wordpress.org`, 23,146,934 and 23,604,020 bytes. Cached native arm64 WordPress 7.1.0/PHP8.3 Apache and MariaDB 11.4 images are available, pinned by local repo digests.
-- Execution: native arm64 Docker; no timing or architecture properties. Editor Events experiment must be active for positive. Use admin account/cookie only in isolated lab.
-- Isolation: separate WordPress/DB pairs on dedicated Compose network with disposable volumes; no state-changing REST probe. Lab-only admin credentials.
-- Product prerequisites: public GPL plugin ZIPs, no activation/license. Need CLI setup of WordPress and plugin in lab; confirm feature enabled.
-- Expected: vulnerable exact marker 200 settings JSON while baseline/near-miss/no-cookie and patched exact marker deny access. An HTTP 200 alone or product version string is insufficient.
+The template detects the Elementor 4.3.0-4.3.1 Editor Events REST nonce
+bypass for a WordPress administrator account. It now takes authorized
+`username` and `password` variables and logs in through standard
+`/wp-login.php`. An HTTP 302 plus a WordPress logged-in cookie is required.
+The cookie is extracted internally and sent with the denied baseline,
+denied near-miss, and exact-marker requests. The login redirect is not followed.
+The scan does not claim anonymous access. SSO, MFA, and custom login paths
+are outside the validated setup. The Editor Events experiment must be active.
 
-## Validation result — passed (actual product)
+## Fresh product validation
 
-- Nuclei v3.11.0 schema validation passed. Docker Compose runner: `python3 tests/verify.py /Users/alex/.local/state/nuclei-template-builds/2026-10-01/elementor-csrf`; successful run `evidence/5c6ec6fe1fe1/summary.json`, template SHA-256 `751fa07576fb3b54bd9933b3b42e754f87e951a8941849c8d3f01b81e580fe76`.
-- Official Elementor 4.3.0 in WordPress 7.1.0: valid administrator cookie without REST nonce yields 401 baseline, 401 near-miss, 200 settings JSON on exact `elementor/v1/events/` query marker. Official Elementor 4.3.2: zero findings and exact marker denied. Invalid cookie on 4.3.0: zero findings. The lab explicitly enables Editor Events.
-- The only test mutation is disposable WordPress installation and local administrator creation. The template itself is read-only. Supply an authorized admin cookie with `-var token='wordpress_logged_in_<hash>=...'`; do not send a real cookie to an untrusted target.
-- Scope: proves a REST nonce bypass for an authenticated administrator session under the stated module prerequisite; it does not claim anonymous access.
+Nuclei v3.11.0 ran against official Elementor 4.3.0 and 4.3.2 in disposable
+WordPress 7.1.0 / MariaDB 11.4 containers on native arm64. The exact updated
+template SHA-256 is `8dfa8c5438047bfe9f10eaa628bb3cc37fa000d633e7674239bf9939546456c5`.
+The saved run is `evidence/6e9bb92c6a5a/`.
+
+| Control | Login and application evidence | Findings |
+| --- | --- | ---: |
+| Elementor 4.3.0, valid admin credentials | Login 302; baseline 401; near miss 401; exact marker 200 with settings JSON | 1 |
+| Elementor 4.3.2, valid admin credentials | Login 302; exact marker 401 | 0 |
+| Elementor 4.3.0, wrong password | Login 200; no differential probe followed | 0 |
+
+The runner asserted template ID and counts, Nuclei schema validation passed,
+and the exact Compose project was removed. Application logs show the expected
+requests and healthy responses. Saved command logs redact the lab password
+and session cookie. The template performs one WordPress login and three
+read-only GET requests; no WordPress state change is part of the probe.
+
+Reproduce with `python3 tests/verify.py /absolute/path/to/this/package`
+after `python3 lab/prepare.py`, using Docker Compose v2 and Python 3.
+The official Elementor ZIPs are pinned and hash-checked by `prepare.py`.
+
+## Earlier evidence
+
+`evidence/5c6ec6fe1fe1/` (if present) belongs to the original template
+that accepted a caller-supplied cookie. It does not validate the updated
+login flow. The new run above supersedes it for this PR revision.
