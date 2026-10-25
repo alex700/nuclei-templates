@@ -5,7 +5,7 @@
 The template detects the Elementor 4.3.0-4.3.1 Editor Events REST nonce
 bypass for a WordPress administrator account. It now takes authorized
 `username` and `password` variables and logs in through standard
-`/wp-login.php`. An HTTP 302 plus a WordPress logged-in cookie is required.
+`/wp-login.php`. An HTTP 302 plus a `Set-Cookie: wordpress_logged_in_...` header is required.
 The cookie is extracted internally and sent with the denied baseline,
 denied near-miss, and exact-marker requests. The login redirect is not followed.
 The scan does not claim anonymous access. SSO, MFA, and custom login paths
@@ -15,8 +15,8 @@ are outside the validated setup. The Editor Events experiment must be active.
 
 Nuclei v3.11.0 ran against official Elementor 4.3.0 and 4.3.2 in disposable
 WordPress 7.1.0 / MariaDB 11.4 containers on native arm64. The exact updated
-template SHA-256 is `8dfa8c5438047bfe9f10eaa628bb3cc37fa000d633e7674239bf9939546456c5`.
-The saved run is `evidence/6e9bb92c6a5a/`.
+template SHA-256 is `950893ddb545ea29a4cb6b3f3d5bcb9ee56b035cd21104a06d750d4a61da659f`.
+The saved run is `evidence/4206f0a72fca/`.
 
 | Control | Login and application evidence | Findings |
 | --- | --- | ---: |

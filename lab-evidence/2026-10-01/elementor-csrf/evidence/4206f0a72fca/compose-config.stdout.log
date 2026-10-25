@@ -1,0 +1,218 @@
+{
+  "name": "nuclei-lab-4206f0a72fca",
+  "networks": {
+    "default": {
+      "name": "nuclei-lab-4206f0a72fca_default",
+      "ipam": {}
+    }
+  },
+  "services": {
+    "db": {
+      "command": null,
+      "entrypoint": null,
+      "environment": {
+        "MARIADB_DATABASE": "wordpress",
+        "MARIADB_PASSWORD": "lab_password_only",
+        "MARIADB_ROOT_PASSWORD": "lab_root_only",
+        "MARIADB_USER": "wordpress"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "healthcheck.sh --connect --innodb_initialized"
+        ],
+        "timeout": "5s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "mariadb:11.4@sha256:70cc072b29b4a89ae07abb2d4da2c64678a7f2dfe092751bb51c87d67dc1338b",
+      "networks": {
+        "default": null
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "db-data",
+          "target": "/var/lib/mysql",
+          "volume": {}
+        }
+      ]
+    },
+    "patched": {
+      "command": null,
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "WORDPRESS_DB_HOST": "db",
+        "WORDPRESS_DB_NAME": "wordpress",
+        "WORDPRESS_DB_PASSWORD": "lab_password_only",
+        "WORDPRESS_DB_USER": "wordpress",
+        "WORDPRESS_TABLE_PREFIX": "wpp_"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "php -r 'exit(@file_get_contents(\"http://127.0.0.1/wp-login.php\") === false);'"
+        ],
+        "timeout": "5s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "wordpress:7.1.0-php8.3-apache@sha256:edeeae67330a6c739b030e7eeaaaf6d60e8f17533a4f6217d20f89c04061952c",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 80,
+          "published": "38891",
+          "protocol": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "patched-data",
+          "target": "/var/www/html",
+          "volume": {}
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/elementor-patched/elementor",
+          "target": "/var/www/html/wp-content/plugins/elementor",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/setup.php",
+          "target": "/opt/setup.php",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/state/patched",
+          "target": "/lab-state",
+          "bind": {
+            "create_host_path": true
+          }
+        }
+      ]
+    },
+    "scanner": {
+      "command": null,
+      "entrypoint": null,
+      "image": "projectdiscovery/nuclei@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc",
+      "networks": {
+        "default": null
+      },
+      "volumes": [
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/template.yaml",
+          "target": "/templates/template.yaml",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        }
+      ]
+    },
+    "vulnerable": {
+      "command": null,
+      "depends_on": {
+        "db": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "WORDPRESS_DB_HOST": "db",
+        "WORDPRESS_DB_NAME": "wordpress",
+        "WORDPRESS_DB_PASSWORD": "lab_password_only",
+        "WORDPRESS_DB_USER": "wordpress",
+        "WORDPRESS_TABLE_PREFIX": "wpv_"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "php -r 'exit(@file_get_contents(\"http://127.0.0.1/wp-login.php\") === false);'"
+        ],
+        "timeout": "5s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "wordpress:7.1.0-php8.3-apache@sha256:edeeae67330a6c739b030e7eeaaaf6d60e8f17533a4f6217d20f89c04061952c",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 80,
+          "published": "38890",
+          "protocol": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "vulnerable-data",
+          "target": "/var/www/html",
+          "volume": {}
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/elementor-vulnerable/elementor",
+          "target": "/var/www/html/wp-content/plugins/elementor",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/setup.php",
+          "target": "/opt/setup.php",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        },
+        {
+          "type": "bind",
+          "source": "/Users/alex/public_html/nuclei-auth-login-prep/elementor/lab/state/vulnerable",
+          "target": "/lab-state",
+          "bind": {
+            "create_host_path": true
+          }
+        }
+      ]
+    }
+  },
+  "volumes": {
+    "db-data": {
+      "name": "nuclei-lab-4206f0a72fca_db-data"
+    },
+    "patched-data": {
+      "name": "nuclei-lab-4206f0a72fca_patched-data"
+    },
+    "vulnerable-data": {
+      "name": "nuclei-lab-4206f0a72fca_vulnerable-data"
+    }
+  }
+}

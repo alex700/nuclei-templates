@@ -2,7 +2,7 @@
   "schema_version": 1,
   "template_id": "elementor-rest-nonce-bypass",
   "template_path": "template.yaml",
-  "template_sha256": "8dfa8c5438047bfe9f10eaa628bb3cc37fa000d633e7674239bf9939546456c5",
+  "template_sha256": "950893ddb545ea29a4cb6b3f3d5bcb9ee56b035cd21104a06d750d4a61da659f",
   "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
   "upstream_revision": "8b9d065ccb0492d39f7680c908b3030a97ddfe1b",
   "sources": [
@@ -32,7 +32,7 @@
       "evidence_level": "actual-product",
       "expected": "one finding after successful login",
       "observed": 1,
-      "evidence_path": "evidence/6e9bb92c6a5a/test-vulnerable.stdout.log"
+      "evidence_path": "evidence/4206f0a72fca/test-vulnerable.stdout.log"
     },
     {
       "name": "patched",
@@ -40,7 +40,7 @@
       "evidence_level": "actual-product",
       "expected": "zero findings after successful login",
       "observed": 0,
-      "evidence_path": "evidence/6e9bb92c6a5a/test-patched.stdout.log"
+      "evidence_path": "evidence/4206f0a72fca/test-patched.stdout.log"
     },
     {
       "name": "invalid-login",
@@ -48,7 +48,7 @@
       "evidence_level": "actual-product",
       "expected": "zero findings; login refused before probe",
       "observed": 0,
-      "evidence_path": "evidence/6e9bb92c6a5a/test-invalid-login.stdout.log"
+      "evidence_path": "evidence/4206f0a72fca/test-invalid-login.stdout.log"
     }
   ],
   "limitations": [
