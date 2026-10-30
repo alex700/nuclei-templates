@@ -1,0 +1,5 @@
+/lab/vulnerable/
+/lab/patched/
+/lab/legacy-vulnerable/
+/lab/legacy-patched/
+/evidence/*/

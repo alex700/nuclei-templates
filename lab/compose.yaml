@@ -1,0 +1,41 @@
+services:
+  vulnerable:
+    image: local/drupal-commerce-cve-2026-118539:base
+    volumes:
+      - ./vulnerable:/opt/drupal
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1/user/login | grep -q 'user_login_form'"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  patched:
+    image: local/drupal-commerce-cve-2026-118539:base
+    volumes:
+      - ./patched:/opt/drupal
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1/user/login | grep -q 'user_login_form'"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  legacy-vulnerable:
+    image: local/drupal-commerce-cve-2026-118539:base
+    volumes:
+      - ./legacy-vulnerable:/opt/drupal
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1/user/login | grep -q 'user_login_form'"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  legacy-patched:
+    image: local/drupal-commerce-cve-2026-118539:base
+    volumes:
+      - ./legacy-patched:/opt/drupal
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1/user/login | grep -q 'user_login_form'"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  scanner:
+    image: projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb
+    volumes:
+      - ../template.yaml:/templates/template.yaml:ro

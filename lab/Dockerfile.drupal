@@ -1,0 +1,3 @@
+FROM drupal@sha256:fbf47235f54bbb4801923e4fe8574029e8975016bc28766ecd02a65a31926870
+
+RUN docker-php-ext-install bcmath

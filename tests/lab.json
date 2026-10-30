@@ -1,0 +1,181 @@
+{
+  "template_id": "CVE-2026-118539",
+  "template_path": "template.yaml",
+  "compose_file": "lab/compose.yaml",
+  "scanner_service": "scanner",
+  "container_template": "/templates/template.yaml",
+  "target_services": [
+    "vulnerable",
+    "patched",
+    "legacy-vulnerable",
+    "legacy-patched"
+  ],
+  "timeout_seconds": 180,
+  "tests": [
+    {
+      "name": "vulnerable_customer",
+      "target": "http://vulnerable",
+      "min_matches": 1,
+      "max_matches": 1,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "patched_customer",
+      "target": "http://patched",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "wrong_password",
+      "target": "http://vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=wrong",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "missing_order",
+      "target": "http://vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=999"
+      ]
+    },
+    {
+      "name": "admin_account",
+      "target": "http://vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labadmin",
+        "-var",
+        "password=labadmin123",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "legacy_vulnerable_customer",
+      "target": "http://legacy-vulnerable",
+      "min_matches": 1,
+      "max_matches": 1,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "legacy_patched_customer",
+      "target": "http://legacy-patched",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "legacy_vulnerable_missing_order",
+      "target": "http://legacy-vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=999"
+      ]
+    },
+    {
+      "name": "legacy_patched_missing_order",
+      "target": "http://legacy-patched",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=labpass123",
+        "-var",
+        "order_id=999"
+      ]
+    },
+    {
+      "name": "legacy_wrong_password",
+      "target": "http://legacy-vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labcustomer",
+        "-var",
+        "password=wrong",
+        "-var",
+        "order_id=1"
+      ]
+    },
+    {
+      "name": "legacy_admin_account",
+      "target": "http://legacy-vulnerable",
+      "min_matches": 0,
+      "max_matches": 0,
+      "extra_args": [
+        "-ni",
+        "-var",
+        "username=labadmin",
+        "-var",
+        "password=labadmin123",
+        "-var",
+        "order_id=1"
+      ]
+    }
+  ]
+}
