@@ -2,33 +2,25 @@
   "schema_version": 1,
   "template_id": "CVE-2026-118539",
   "template_path": "template.yaml",
-  "template_sha256": "46b137565a7a9715259d3627ed64f0b4be6db520efd601bc0f31aa63e100b801",
+  "template_sha256": "d51b7a1bebcaa7a1e202d4dedbed305a4372a4c416f616944f48e96eb5ea2c1a",
   "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
-  "upstream_revision": "5cfe87d58464ab47a871d0be3d2844bf51e6eda5",
+  "upstream_revision": "0a49c85705b2cf0dd356be3b53b39daf1d624b91",
   "sources": [
     {
       "url": "https://www.drupal.org/sa-contrib-2026-254",
       "revision": null
     },
     {
-      "url": "https://git.drupalcode.org/project/commerce/-/compare/3.3.12...3.3.13",
-      "path": "research/commerce-3.3.12-to-3.3.13-compare.json",
-      "sha256": "f2a304835e5e088dccdec054cf8cb7b94c247502d8983e099764985a1b8010e7",
+      "url": "https://git.drupalcode.org/project/commerce/-/commit/2ddd3a34764d40ec79afdc17525feda4d5f7391f",
       "revision": "2ddd3a34764d40ec79afdc17525feda4d5f7391f"
     },
     {
       "url": "https://git.drupalcode.org/project/commerce/-/compare/8.x-2.40...8.x-2.41",
-      "path": "research/commerce-8.x-2.40-to-8.x-2.41-compare.json",
-      "sha256": "c3dcc15ba08a22bcbfd853c3cb9589c81d9bade9f375f4e8e736dbd5e4139919",
       "revision": "02d5bbe9735c"
     },
     {
-      "url": "https://github.com/projectdiscovery/nuclei-templates/blob/main/CONTRIBUTING.md",
-      "revision": "5cfe87d58464ab47a871d0be3d2844bf51e6eda5"
-    },
-    {
-      "url": "https://github.com/projectdiscovery/nuclei-templates/blob/main/TEMPLATE-REVIEW-GUIDE.md",
-      "revision": "5cfe87d58464ab47a871d0be3d2844bf51e6eda5"
+      "url": "https://github.com/projectdiscovery/nuclei-templates/pull/17612#issuecomment-6568135760",
+      "revision": null
     }
   ],
   "nuclei_image": "projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb",
@@ -64,107 +56,87 @@
     }
   ],
   "architecture": "linux/arm64",
-  "validation_status": "author-passed-independent-pending",
+  "validation_status": "author-and-independent-review-passed",
   "evidence_level": "actual-product",
   "tests": [
     {
-      "name": "vulnerable_customer",
-      "target_version": "Commerce Core 3.3.12",
+      "name": "affected_3x",
+      "target_version": "3.3.12",
       "evidence_level": "actual-product",
-      "expected": "1 finding(s)",
-      "observed": "1 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 1,
+      "observed": 1,
+      "product_gets": 1,
+      "cart_posts": 1,
+      "final_status": 200,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     },
     {
-      "name": "patched_customer",
-      "target_version": "Commerce Core 3.3.13",
+      "name": "fixed_3x",
+      "target_version": "3.3.13",
       "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 0,
+      "observed": 0,
+      "product_gets": 1,
+      "cart_posts": 1,
+      "final_status": 403,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     },
     {
-      "name": "wrong_password",
-      "target_version": "Commerce Core 3.3.12",
+      "name": "affected_2x",
+      "target_version": "2.40.0",
       "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 1,
+      "observed": 1,
+      "product_gets": 1,
+      "cart_posts": 1,
+      "final_status": 200,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     },
     {
-      "name": "missing_order",
-      "target_version": "Commerce Core 3.3.12",
+      "name": "fixed_2x",
+      "target_version": "2.41.0",
       "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 0,
+      "observed": 0,
+      "product_gets": 1,
+      "cart_posts": 1,
+      "final_status": 403,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     },
     {
-      "name": "admin_account",
-      "target_version": "Commerce Core 3.3.12",
+      "name": "no_public_product",
+      "target_version": "3.3.12",
       "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 0,
+      "observed": 0,
+      "product_gets": 63,
+      "cart_posts": 0,
+      "final_status": null,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     },
     {
-      "name": "legacy_vulnerable_customer",
-      "target_version": "Commerce Core 2.40.0",
+      "name": "later_product_13",
+      "target_version": "3.3.12",
       "evidence_level": "actual-product",
-      "expected": "1 finding(s)",
-      "observed": "1 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
-    },
-    {
-      "name": "legacy_patched_customer",
-      "target_version": "Commerce Core 2.41.0",
-      "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
-    },
-    {
-      "name": "legacy_vulnerable_missing_order",
-      "target_version": "Commerce Core 2.40.0",
-      "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
-    },
-    {
-      "name": "legacy_patched_missing_order",
-      "target_version": "Commerce Core 2.41.0",
-      "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
-    },
-    {
-      "name": "legacy_wrong_password",
-      "target_version": "Commerce Core 2.40.0",
-      "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
-    },
-    {
-      "name": "legacy_admin_account",
-      "target_version": "Commerce Core 2.40.0",
-      "evidence_level": "actual-product",
-      "expected": "0 finding(s)",
-      "observed": "0 finding(s), in working and clean recreated labs",
-      "evidence_path": "evidence/final-sanitized.md"
+      "expected": 1,
+      "observed": 1,
+      "product_gets": 11,
+      "cart_posts": 1,
+      "final_status": 200,
+      "evidence_path": "evidence/redacted-guest-cart-debug.md"
     }
   ],
   "limitations": [
-    "Authenticated detector requires a supplied ordinary customer who owns an existing draft cart order and that order ID.",
-    "Only the state-transition administration route behavior is detected; other advisory paths and financial effects are not tested.",
-    "Final two-branch bytes await independent reviewer and validator reruns.",
-    "Reproduction package and contribution branch are local only; no push or PR exists."
+    "Only the standard Commerce product add-to-cart form and default cart View were exercised.",
+    "Product IDs are sampled, not fully enumerated; no finding is inconclusive.",
+    "The first form match stops discovery even if add-to-cart subsequently fails.",
+    "A successful scan leaves one anonymous draft cart order; no checkout or transition is submitted.",
+    "This proves one route access behavior, not every advisory path or financial effect.",
+    "Independent review and upstream CI are pending; PR #17612 remains closed."
   ],
-  "branch": "add/cve-2026-118539",
-  "commit": "7fd72f2fb477e6fdfbc324bdac91ffaad8869a2d",
-  "pr_url": null,
-  "reviewer_report": "review.md (superseded 3.x draft only)",
-  "validator_report": "VALIDATOR-REPORT.md (superseded 3.x draft only)"
+  "branch": "evidence/cve-2026-118539-guest-cart",
+  "commit": null,
+  "pr_url": "https://github.com/projectdiscovery/nuclei-templates/pull/17612",
+  "external_publication": "none; local preparation only",
+  "contribution_branch": "add/cve-2026-118539"
 }

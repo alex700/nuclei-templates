@@ -10,9 +10,7 @@ import uuid
 
 
 def assert_findings(output, template_id, minimum, maximum):
-    findings = [json.loads(line) for line in output.splitlines() if line.strip()]
-    if any(not isinstance(row, dict) or row.get('template-id') != template_id for row in findings):
-        raise ValueError('Unexpected finding or template ID')
+    findings = re.findall(r'(?m)^\[' + re.escape(template_id) + r':[A-Za-z0-9_-]+\] \[http\] [^\n]+$', output)
     if not 0 <= minimum <= maximum or not minimum <= len(findings) <= maximum:
         raise ValueError(f'Expected {minimum}..{maximum} findings; observed {len(findings)}')
     return findings
@@ -80,11 +78,29 @@ def run(package):
         command('validate', scanner + common + ['-validate'])
         for test in tests:
             output = command('test-' + test['name'], scanner + common +
-                             ['-u', test['target'], '-jsonl', '-silent', '-debug'] + test.get('extra_args', []))
+                             ['-u', test['target'], '-debug'] + test.get('extra_args', []))
             findings = assert_findings(output, config['template_id'], test['min_matches'], test['max_matches'])
-            (evidence / (test['name'] + '.jsonl')).write_text(output)
+            debug = (evidence / ('test-' + test['name'] + '.stderr.log')).read_text()
+            product_gets = re.findall(r'(?m)^GET /product/\d+ HTTP/1\.1\r?$', debug)
+            cart_posts = re.findall(r'(?m)^POST /product/\d+ HTTP/1\.1\r?$', debug)
+            final = re.search(r'(?m)^GET /admin/commerce/orders/\d+/state/place HTTP/1\.1\r?[\s\S]*?^HTTP/1\.1 (\d{3})', debug)
+            if len(product_gets) != test['expected_product_gets']:
+                raise ValueError(f"{test['name']}: expected {test['expected_product_gets']} product GETs, observed {len(product_gets)}")
+            if len(cart_posts) != test['expected_cart_posts']:
+                raise ValueError(f"{test['name']}: expected {test['expected_cart_posts']} add-to-cart POSTs, observed {len(cart_posts)}")
+            expected_status = test['expected_final_status']
+            if expected_status is None and final:
+                raise ValueError(f"{test['name']}: unexpected final administrative request")
+            if expected_status is not None and (not final or int(final.group(1)) != expected_status):
+                raise ValueError(f"{test['name']}: expected final administrative HTTP {expected_status}; observed {final.group(1) if final else 'not requested'}")
+            proof_form = 'name="form_id" value="commerce_order_default_state-transition-confirm_form"' in debug
+            if proof_form != (expected_status == 200):
+                raise ValueError(f"{test['name']}: state-transition form proof disagrees with expected response")
+            (evidence / (test['name'] + '.findings.txt')).write_text('\n'.join(findings) + ('\n' if findings else ''))
             summary['tests'].append({'name': test['name'], 'observed_matches': len(findings),
-                                     'expected_min': test['min_matches'], 'expected_max': test['max_matches']})
+                                     'expected_min': test['min_matches'], 'expected_max': test['max_matches'],
+                                     'product_gets': len(product_gets), 'cart_posts': len(cart_posts),
+                                     'final_status': int(final.group(1)) if final else None, 'proof_form': proof_form})
         summary['assertions_passed'] = True
     except Exception as error:
         summary['error'] = str(error)

@@ -1,12 +1,14 @@
-# CVE-2026-118539 local reproduction package
+# CVE-2026-118539 guest-cart reproduction package
 
-This package reproduces the authenticated Drupal Commerce order-route detector on actual local vulnerable and patched installations for both supported branches. It contains only public source references, pinned Composer metadata, scripts, and sanitized findings. Generated Drupal sites, raw HTTP/debug logs, and session material are excluded.
+This package builds four isolated actual-product Drupal Commerce installations and two additional controls, then runs the exact site-root Nuclei template. It requires no scanner account or known order ID. Setup creates one public standard product per affected/fixed site, a copy with no public product, and a copy whose first public product is ID 13. A successful scan creates one persistent anonymous draft cart. No checkout or order state transition is submitted. The scanner samples 63 product IDs at most, using odd non-round increments after IDs 1-10, and stops at the first matched standard add-to-cart form. A failed add-to-cart POST yields no finding; the scan does not continue to later IDs.
 
-Requirements: Docker Engine with Compose v2, Python 3, and available network access to the official pinned Drupal image and Composer package downloads during the first setup.
+Requirements: Docker Engine with Compose v2, Python 3, and network access to the pinned Drupal image and Composer packages for initial setup.
 
-```bash
+```sh
 bash lab/setup.sh
 python3 tests/verify.py "$(pwd)"
 ```
 
-The setup refuses to overwrite existing installations. The runner uses a unique Docker Compose project, starts only the four local targets, validates the exact template, runs 11 scenarios, and tears down that project. `verification.md`, `evidence/final-sanitized.md`, and `evidence/redacted-nuclei-debug.md` describe the expected outcomes, redacted Nuclei request/response proof, and limitations. The generated lab application directories stay local until manually removed.
+Setup refuses to overwrite existing lab installations. The runner uses a unique Compose project, validates the template under pinned Nuclei v3.11.1, checks all six controls, and removes the Compose containers/network. Generated Drupal directories and raw local debug logs remain until separately reviewed and removed. Raw logs can contain disposable session material and must not be published. The publishable summary is `evidence/redacted-guest-cart-debug.md`.
+
+A finding proves only guest access to its own draft order state-transition confirmation form in the tested standard cart configuration. It does not submit the form, establish all paths in the Drupal advisory, or show that every site has a public product among the sampled IDs. A missing finding is inconclusive.

@@ -2,4 +2,7 @@
 /lab/patched/
 /lab/legacy-vulnerable/
 /lab/legacy-patched/
+/lab/no-product/
+/lab/later-product/
 /evidence/*/
+/pr-description.md
