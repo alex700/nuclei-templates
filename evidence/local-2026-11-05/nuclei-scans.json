@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-05T21:38:34.462039+00:00",
+  "nucleiImage": "projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb",
+  "templateSha256": "c7fac613a76fb9f2f8a01db9adfa02223a93cfc564e3809afb43ded6353dd395",
+  "results": [
+    {
+      "target": "vulnerable_24_09_07",
+      "repeat": 1,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": true,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": true,
+      "webtoolsDecoratorInResponse": false,
+      "log": "nuclei-vulnerable_24_09_07-1.log"
+    },
+    {
+      "target": "vulnerable_24_09_07",
+      "repeat": 2,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": true,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": true,
+      "webtoolsDecoratorInResponse": false,
+      "log": "nuclei-vulnerable_24_09_07-2.log"
+    },
+    {
+      "target": "vulnerable_24_09_07",
+      "repeat": 3,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": true,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": true,
+      "webtoolsDecoratorInResponse": false,
+      "log": "nuclei-vulnerable_24_09_07-3.log"
+    },
+    {
+      "target": "fixed_24_09_08",
+      "repeat": 1,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": false,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": false,
+      "webtoolsDecoratorInResponse": true,
+      "log": "nuclei-fixed_24_09_08-1.log"
+    },
+    {
+      "target": "fixed_24_09_08",
+      "repeat": 2,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": false,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": false,
+      "webtoolsDecoratorInResponse": true,
+      "log": "nuclei-fixed_24_09_08-2.log"
+    },
+    {
+      "target": "fixed_24_09_08",
+      "repeat": 3,
+      "exitCode": 0,
+      "findingExitCode": 0,
+      "finding": false,
+      "templateLoaded": true,
+      "targetReachedWith200": true,
+      "fileScreenSectionInResponse": false,
+      "webtoolsDecoratorInResponse": true,
+      "log": "nuclei-fixed_24_09_08-3.log"
+    }
+  ],
+  "conclusion": "3/3 vulnerable findings, 0/3 fixed findings; all requests reached OFBiz and templates loaded"
+}

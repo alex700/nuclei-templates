@@ -1,0 +1,8 @@
+[INF] Templates loaded for current scan: 1
+POST /webtools/control/main HTTP/1.1
+Content-Type: application/json
+{"mainDecoratorLocation":"file:/proc/self/cwd/framework/webtools/widget/CommonScreens.xml"}
+HTTP/1.1 200
+<!-- Begin section widgetcomponent://webtools/widget/CommonScreens.xml#main id 0731748c-175a-46f2-b657-1a014e9edf24 -->
+<!-- Begin section widgetfile:/proc/self/cwd/framework/webtools/widget/CommonScreens.xml#main-decorator id f2af7591-60f2-48f2-a463-e27ffaead5c8 -->
+[INF] Scan completed in 47.840125ms. 2 matches found.
