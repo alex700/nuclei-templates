@@ -1,0 +1,12 @@
+{
+  "template_id": "vates-sa-2026-062",
+  "template_path": "template.yaml",
+  "compose_file": "lab/compose.yaml",
+  "scanner_image": "projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb",
+  "runner": "tests/verify.py",
+  "mode": "sequential-source-revisions",
+  "targets": [
+    {"name": "affected", "revision": "724402733b2381d93372db0183e21df9d2c457f7", "expected_matches": 1},
+    {"name": "fixed", "revision": "50166fe3a49c02069d35ba9046ca4a1f77f4e11d", "expected_matches": 0}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "label": "affected",
+  "revision": "724402733b2381d93372db0183e21df9d2c457f7",
+  "probe": {
+    "before_token": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "token_created": 201,
+    "anonymous": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "malformed": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "object_cookie": {
+      "status": 307,
+      "locationIsUser": true
+    },
+    "valid_token": {
+      "status": 307,
+      "locationIsUser": true
+    }
+  },
+  "matches": 1,
+  "template_ids": [
+    "vates-sa-2026-062"
+  ]
+}

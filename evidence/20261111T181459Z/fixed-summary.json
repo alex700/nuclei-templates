@@ -1,0 +1,29 @@
+{
+  "label": "fixed",
+  "revision": "50166fe3a49c02069d35ba9046ca4a1f77f4e11d",
+  "probe": {
+    "before_token": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "token_created": 201,
+    "anonymous": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "malformed": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "object_cookie": {
+      "status": 401,
+      "locationIsUser": false
+    },
+    "valid_token": {
+      "status": 307,
+      "locationIsUser": true
+    }
+  },
+  "matches": 0,
+  "template_ids": []
+}

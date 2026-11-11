@@ -1,0 +1,69 @@
+{
+  "template_sha256": "b50b35d8392050e61967d26307fa3180d9c55c03e8f4a5b8b38803b176c287d0",
+  "architecture": "linux/amd64 application on ARM64 Docker host",
+  "scanner_image": "projectdiscovery/nuclei@sha256:582d5546902e67052097cb2d07296c642d50a1afc5e44623cb038845df9a32eb",
+  "tests": [
+    {
+      "label": "affected",
+      "revision": "724402733b2381d93372db0183e21df9d2c457f7",
+      "probe": {
+        "before_token": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "token_created": 201,
+        "anonymous": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "malformed": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "object_cookie": {
+          "status": 307,
+          "locationIsUser": true
+        },
+        "valid_token": {
+          "status": 307,
+          "locationIsUser": true
+        }
+      },
+      "matches": 1,
+      "template_ids": [
+        "vates-sa-2026-062"
+      ]
+    },
+    {
+      "label": "fixed",
+      "revision": "50166fe3a49c02069d35ba9046ca4a1f77f4e11d",
+      "probe": {
+        "before_token": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "token_created": 201,
+        "anonymous": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "malformed": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "object_cookie": {
+          "status": 401,
+          "locationIsUser": false
+        },
+        "valid_token": {
+          "status": 307,
+          "locationIsUser": true
+        }
+      },
+      "matches": 0,
+      "template_ids": []
+    }
+  ],
+  "status": "passed",
+  "cleanup": "Compose project removed"
+}

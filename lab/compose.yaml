@@ -1,0 +1,40 @@
+services:
+  redis:
+    image: redis:7-alpine@sha256:52d1ea8a654b10f06af3ecda4e9dbcd035c7868b5c49ee7975de917f81de13db
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    tmpfs:
+      - /data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+    networks: [lab]
+
+  xo:
+    image: node:24.22.1-bookworm@sha256:0925478b811e8890f5508ad2a75135933310effd45492696ecf7c111c8339d02
+    platform: linux/amd64
+    user: "${LAB_UID:-501}:${LAB_GID:-20}"
+    working_dir: /work/packages/xo-server
+    command: ["node", "dist/cli.mjs"]
+    environment:
+      XDG_CONFIG_HOME: /lab/config
+      NODE_ENV: production
+      LD_LIBRARY_PATH: /work/node_modules/fuse-shared-library-linux/libfuse/lib
+    volumes:
+      - ./source:/work:ro
+      - ./config:/lab/config
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/rest/v0/users/me').then(r=>process.exit(r.status===401?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 4s
+      retries: 30
+      start_period: 20s
+    networks: [lab]
+
+networks:
+  lab:
+    internal: true

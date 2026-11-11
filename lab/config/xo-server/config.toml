@@ -1,0 +1,7 @@
+[http]
+
+[[http.listen]]
+port = 8080
+
+[redis]
+uri = "redis://redis:6379/0"
