@@ -1,0 +1,11 @@
+lab/*.tar.gz
+lab/*.tar.gz.sha256
+lab/*.jar
+lab/war/
+lab/src/
+lab/m2/
+lab/*.log
+lab/__pycache__/
+tests/__pycache__/
+evidence/*/
+*.pyc

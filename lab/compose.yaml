@@ -1,0 +1,105 @@
+services:
+  db-affected:
+    image: postgres:15@sha256:10f9e886f772e9d6484350b043bcf990ead67ae5d9988ddce265d72a299055d5
+    environment:
+      POSTGRES_DB: rollerdb
+      POSTGRES_USER: roller
+      POSTGRES_PASSWORD: rollerlab
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U roller -d rollerdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks: [roller-lab]
+  affected:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        WAR_PATH: war/roller-6.1.4.war
+    environment:
+      DB_HOST: db-affected
+    depends_on:
+      db-affected:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1::8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -o /dev/null http://127.0.0.1:8080/roller-ui/install/install.rol"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 15s
+    networks: [roller-lab]
+  db-vulnerable:
+    image: postgres:15@sha256:10f9e886f772e9d6484350b043bcf990ead67ae5d9988ddce265d72a299055d5
+    environment:
+      POSTGRES_DB: rollerdb
+      POSTGRES_USER: roller
+      POSTGRES_PASSWORD: rollerlab
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U roller -d rollerdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks: [roller-lab]
+  db-fixed:
+    image: postgres:15@sha256:10f9e886f772e9d6484350b043bcf990ead67ae5d9988ddce265d72a299055d5
+    environment:
+      POSTGRES_DB: rollerdb
+      POSTGRES_USER: roller
+      POSTGRES_PASSWORD: rollerlab
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U roller -d rollerdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks: [roller-lab]
+  vulnerable:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        WAR_PATH: war/roller-6.1.5-official.war
+    environment:
+      DB_HOST: db-vulnerable
+    depends_on:
+      db-vulnerable:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1::8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -o /dev/null http://127.0.0.1:8080/roller-ui/install/install.rol"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 15s
+    networks: [roller-lab]
+  fixed:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        WAR_PATH: war/roller-6.1.6-official.war
+    environment:
+      DB_HOST: db-fixed
+    depends_on:
+      db-fixed:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1::8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -o /dev/null http://127.0.0.1:8080/roller-ui/install/install.rol"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 15s
+    networks: [roller-lab]
+  scanner:
+    image: projectdiscovery/nuclei:v3.11.0@sha256:e677842fb1f50f29747565ba274a1d35dcf8c684132a42b0cb406e71fccae9fc
+    volumes:
+      - ../template.yaml:/templates/template.yaml:ro
+    networks: [roller-lab]
+networks:
+  roller-lab:
+    driver: bridge

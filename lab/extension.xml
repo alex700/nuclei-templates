@@ -1,0 +1,1 @@
+<?xml version="1.0"?><methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions"><methodName>blogger.getUsersBlogs</methodName><params><param><value><ex:nil/></value></param></params></methodCall>

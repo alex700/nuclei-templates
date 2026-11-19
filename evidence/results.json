@@ -1,0 +1,34 @@
+{
+  "template_sha256": "a09106ca188e42ff196127c3b615fb6ad7cdfcbe03d6b7c94acc57d55fb1c181",
+  "engine": "Nuclei v3.11.0",
+  "evidence_level": "actual-product",
+  "tested_artifacts": "checksum-verified official Apache Roller binary WARs",
+  "tests": [
+    {
+      "target": "6.1.4",
+      "xmlrpc_enabled": false,
+      "expected_matches": 1,
+      "observed_matches": 1
+    },
+    {
+      "target": "6.1.5",
+      "xmlrpc_enabled": false,
+      "expected_matches": 1,
+      "observed_matches": 1
+    },
+    {
+      "target": "6.1.6",
+      "xmlrpc_enabled": false,
+      "expected_matches": 0,
+      "observed_matches": 0
+    },
+    {
+      "target": "6.1.6",
+      "xmlrpc_enabled": true,
+      "expected_matches": 0,
+      "observed_matches": 0
+    }
+  ],
+  "scanner_template_validation": "passed",
+  "lab_cleanup": "passed"
+}

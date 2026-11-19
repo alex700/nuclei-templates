@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!start-roller.sh
+!postgresql.jar
+!javax-mail.jar
+!war/
+!war/*.war
